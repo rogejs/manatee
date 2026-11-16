@@ -1,0 +1,6 @@
+{
+  "name": "@manatee/utils",
+  "dependencies": {
+    "@manatee/core": "workspace:*"
+  }
+}
