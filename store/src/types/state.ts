@@ -1,3 +1,5 @@
+import type { StorageConfig } from "./persists.ts";
+
 type InitState<S> = S extends (...args: never[]) => unknown
   ? never
   : S extends undefined
@@ -11,4 +13,9 @@ type BoxCreate<S, A> = {
   subscribe: (cb: (state: InitState<S>) => void) => () => boolean;
 };
 
-export type { InitState, BoxCreate };
+type BoxBuilder<S, A> = {
+  persist: (name: string, storage?: StorageConfig) => void;
+  create: () => BoxCreate<S, A>;
+};
+
+export type { InitState, BoxCreate, BoxBuilder };
