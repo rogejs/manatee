@@ -1,5 +1,5 @@
-import type { StorageConfig } from "../types/persists";
-import type { InitState } from "../types/state";
+import type { StorageConfig } from "../types/persists.js";
+import type { InitState } from "../types/state.ts";
 
 const get_storage = (storage: StorageConfig) => {
   if (typeof window === "undefined") return null;

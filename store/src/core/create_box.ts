@@ -1,15 +1,15 @@
-import { check_env } from "../libs/check_env";
-import { init_state_err, storage_name_err } from "../libs/check_err";
-import { get_storage, storage_mutate, storage_query } from "../libs/storage";
-import type { PersistsConfig, StorageConfig } from "../types/persists";
-import type { InitState } from "../types/state";
+import { check_env } from "../libs/check_env.js";
+import { init_state_err, storage_name_err } from "../libs/check_err.js";
+import { get_storage, storage_mutate, storage_query } from "../libs/storage.js";
+import type { PersistsConfig, StorageConfig } from "../types/persists.ts";
+import type { BoxBuilder, InitState } from "../types/state.ts";
 
 export const create_box = <S, A>(
   init_state: InitState<S>,
   actions: (
     set: (next: InitState<S> | ((prev: InitState<S>) => InitState<S>)) => void,
   ) => A,
-) => {
+): BoxBuilder<S, A> => {
   const { is_production, is_test } = check_env();
   let persist_cfg: PersistsConfig = {
     name: null,
